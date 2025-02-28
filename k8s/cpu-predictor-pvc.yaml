@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cpu-predictor-data-pvc
+  namespace: suslmk-ns
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: cp-storageclass
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cpu-predictor-model-pvc
+  namespace: suslmk-ns
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: cp-storageclass
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cpu-predictor-output-pvc
+  namespace: suslmk-ns
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: cp-storageclass
