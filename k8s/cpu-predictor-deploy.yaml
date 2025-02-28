@@ -25,8 +25,31 @@ spec:
           mountPath: /app/models
         - name: output-storage
           mountPath: /app/output
-      imagePullSecrets:
-      - name: ncr-secret
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+            ephemeral-storage: "500Mi"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+            ephemeral-storage: "1Gi"
+        env:
+        - name: PROMETHEUS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cpu-predictor-config
+              key: PROMETHEUS_URL
+        - name: STEP_INTERVAL
+          valueFrom:
+            configMapKeyRef:
+              name: cpu-predictor-config
+              key: STEP_INTERVAL
+        - name: TIME_RANGE_DAYS
+          valueFrom:
+            configMapKeyRef:
+              name: cpu-predictor-config
+              key: TIME_RANGE_DAYS
       volumes:
       - name: data-storage
         persistentVolumeClaim:
@@ -37,3 +60,5 @@ spec:
       - name: output-storage
         persistentVolumeClaim:
           claimName: cpu-predictor-output-pvc
+      imagePullSecrets:
+      - name: ncr-secret

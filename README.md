@@ -136,3 +136,17 @@ jupyter notebook notebooks/model_example.ipynb
 ## 라이센스
 
 이 프로젝트는 MIT 라이센스 하에 배포됩니다.
+
+
+```sh
+docker build -t 44ce789b-kr1-registry.container.nhncloud.com/container-platform-registry/predicted_model .
+docker push 44ce789b-kr1-registry.container.nhncloud.com/container-platform-registry/predicted_model
+```
+
+```sh
+kubectl create secret docker-registry ncr-secret \
+  --docker-server=44ce789b-kr1-registry.container.nhncloud.com/container-platform-registry \
+  --docker-username=1aXCA1Oj0FqA8OMhalOUhK2b \
+  --docker-password=3czGgxo7Xlpk5ojY7v4d \
+  -n suslmk-ns
+```

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cpu-predictor-config
+  namespace: suslmk-ns
+data:
+  PROMETHEUS_URL: "http://133.186.215.116:32211"
+  STEP_INTERVAL: "300s"
+  TIME_RANGE_DAYS: "30"
