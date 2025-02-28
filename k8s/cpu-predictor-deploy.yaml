@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-predictor
+  namespace: suslmk-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpu-predictor
+  template:
+    metadata:
+      labels:
+        app: cpu-predictor
+    spec:
+      containers:
+      - name: cpu-predictor
+        image: 44ce789b-kr1-registry.container.nhncloud.com/container-platform-registry/predicted_model:latest
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: data-storage
+          mountPath: /app/data
+        - name: model-storage
+          mountPath: /app/models
+        - name: output-storage
+          mountPath: /app/output
+      imagePullSecrets:
+      - name: ncr-secret
+      volumes:
+      - name: data-storage
+        persistentVolumeClaim:
+          claimName: cpu-predictor-data-pvc
+      - name: model-storage
+        persistentVolumeClaim:
+          claimName: cpu-predictor-model-pvc
+      - name: output-storage
+        persistentVolumeClaim:
+          claimName: cpu-predictor-output-pvc

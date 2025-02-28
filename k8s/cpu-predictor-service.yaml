@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cpu-predictor-service
+  namespace: suslmk-ns
+spec:
+  selector:
+    app: cpu-predictor  # Pod 레이블 필요
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
