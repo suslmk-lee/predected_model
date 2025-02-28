@@ -150,3 +150,9 @@ kubectl create secret docker-registry ncr-secret \
   --docker-password=3czGgxo7Xlpk5ojY7v4d \
   -n suslmk-ns
 ```
+
+```sh
+$ sudo podman login 44ce789b-kr1-registry.container.nhncloud.com
+Username: 1aXCA1Oj0FqA8OMhalOUhK2b
+Password: 3czGgxo7Xlpk5ojY7v4d
+Login Succeeded!
